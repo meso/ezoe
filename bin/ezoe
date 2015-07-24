@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var Ezoe = require('../lib/ezoe')
+new Ezoe().start();
