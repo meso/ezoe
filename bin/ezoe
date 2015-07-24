@@ -1,4 +1,55 @@
 #!/usr/bin/env node
 
-var Ezoe = require('../lib/ezoe')
-new Ezoe().start();
+'use strict';
+
+var cheerio = require('cheerio');
+var Askfm = require('../lib/askfm')
+var ask = new Askfm();
+
+var colors = {
+  red: '\u001b[31m',
+  green: '\u001b[32m',
+  white: '\u001b[37m',
+  end: '\u001b[0m'
+};
+
+var keywords = /質問ではない。?|不?自由/g;
+
+var args = process.argv;
+if (args.length <= 2) {
+  ask.getRss(function(rss) {
+    showLog(rss);
+  });
+} else {
+  extractArgs(function(q) {
+    ask.postQuestion(q);
+  });
+}
+
+function extractArgs() {
+  return args.slice(2).reduce(function(previous, current) {
+    return previous + " " + current;
+  });
+}
+
+function showLog(rss) {
+  var logs = [];
+  var $ = cheerio.load(rss, {ignoreWhitespace: true, xmlMode: true});
+  $('item').each(function(i, elem) {
+    var link = $(this).children('link').text()
+    var title = colors.red + $(this).children('title').text() + colors.end;
+    var desc = $(this).children('description').text();
+    desc = desc.replace(keywords, colors.green + '$&' + colors.end);
+    logs.push({
+      link: link,
+      title: title,
+      desc: desc
+    });
+  });
+  logs.reverse().forEach(function(log) {
+    console.log(log.link);
+    console.log(log.title);
+    console.log(log.desc);
+    console.log();
+  });
+}
