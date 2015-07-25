@@ -29,6 +29,14 @@ $ ezoe -u username
 $ npm install ezoe -g
 ```
 
+### Tips
+
+なんかエラーでたら Cookie 保存してるファイルを削除してみてください
+
+```
+$ rm ~/.askfm-cokkies.json
+```
+
 ## License
 
 MIT
