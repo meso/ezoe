@@ -1,6 +1,6 @@
 {
   "name": "ezoe",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The ezoe command written in Node.js",
   "main": "lib/askfm",
   "bin": "bin/ezoe",
@@ -11,8 +11,8 @@
     "ezoe"
   ],
   "repository": {
-    "type" : "git",
-    "url" : "http://github.com/meso/ezoe.git"
+    "type": "git",
+    "url": "http://github.com/meso/ezoe.git"
   },
   "author": "Toshihiro Shimizu",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "cheerio": "^0.19.0",
     "commander": "^2.8.1",
     "os-homedir": "^1.0.1",
+    "read": "^1.0.6",
     "request": "^2.60.0",
     "superagent": "^1.2.0",
     "tough-cookie-filestore": "0.0.1"

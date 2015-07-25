@@ -2,7 +2,7 @@
 
 'use strict';
 
-var readline = require('readline');
+var read = require('read');
 var cheerio = require('cheerio');
 var program = require('commander');
 var Askfm = require('../lib/askfm');
@@ -17,7 +17,7 @@ var colors = {
 var keywords = /質問ではない。?|不?自由/g;
 
 program
-.version('0.1.1')
+.version('0.1.2')
 .option('-u, --user [username]', 'Specify who to ask. default: EzoeRyou', 'EzoeRyou')
 .usage('[options] [question]')
 .parse(process.argv);
@@ -43,13 +43,8 @@ if (program.args.length === 0) {
 }
 
 function getUserInfo(callback) {
-  var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-  rl.question('User: ', function(user) {
-    rl.question('Password: ', function(password) {
-      rl.close();
+  read({prompt: 'User: '}, function(err, user) {
+    read({prompt: 'Password: ', silent: true}, function(err, password) {
       callback({login: user, password: password});
     });
   });
