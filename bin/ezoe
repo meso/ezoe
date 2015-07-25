@@ -17,7 +17,7 @@ var colors = {
 var keywords = /質問ではない。?|不?自由/g;
 
 program
-.version('0.0.1')
+.version('0.1.0')
 .option('-u, --user [username]', 'Specify who to ask. default: EzoeRyou', 'EzoeRyou')
 .usage('[options] [question]')
 .parse(process.argv);
