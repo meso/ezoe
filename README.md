@@ -17,7 +17,7 @@ $ ezoe これは質問ですか？
 
 ### Optsion
 
-You can specify the Ask.fm users account.
+You can specify the Ask.fm user's account.
 
 ```
 $ ezoe -u username
