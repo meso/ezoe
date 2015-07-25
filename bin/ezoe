@@ -2,9 +2,10 @@
 
 'use strict';
 
+var readline = require('readline');
 var cheerio = require('cheerio');
-var Askfm = require('../lib/askfm')
-var ask = new Askfm();
+var program = require('commander');
+var Askfm = require('../lib/askfm');
 
 var colors = {
   red: '\u001b[31m',
@@ -15,20 +16,48 @@ var colors = {
 
 var keywords = /質問ではない。?|不?自由/g;
 
-var args = process.argv;
-if (args.length <= 2) {
+program
+.version('0.0.1')
+.option('-u, --user [username]', 'Specify who to ask. default: EzoeRyou', 'EzoeRyou')
+.usage('[options] [question]')
+.parse(process.argv);
+
+var ask = new Askfm(program.user);
+if (program.args.length === 0) {
   ask.getRss(function(rss) {
     showLog(rss);
   });
 } else {
-  extractArgs(function(q) {
-    ask.postQuestion(q);
+  var q = extractArgs(program.args);
+  ask.checkLogin(function(token) {
+    if (token) {
+      getUserInfo(function(user) {
+        ask.doLogin(token, user, function() {
+          ask.postQuestion(q);
+        });
+      });
+    } else {
+      ask.postQuestion(q);
+    }
   });
 }
 
-function extractArgs() {
-  return args.slice(2).reduce(function(previous, current) {
-    return previous + " " + current;
+function getUserInfo(callback) {
+  var rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+  rl.question('User: ', function(user) {
+    rl.question('Password: ', function(password) {
+      rl.close();
+      callback({login: user, password: password});
+    });
+  });
+}
+
+function extractArgs(args) {
+  return args.reduce(function(previous, current) {
+    return previous + ' ' + current;
   });
 }
 
