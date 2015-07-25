@@ -22,7 +22,6 @@
     "os-homedir": "^1.0.1",
     "read": "^1.0.6",
     "request": "^2.60.0",
-    "superagent": "^1.2.0",
     "tough-cookie-filestore": "0.0.1"
   }
 }
