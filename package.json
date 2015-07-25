@@ -1,6 +1,6 @@
 {
   "name": "ezoe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The ezoe command written in Node.js",
   "main": "lib/askfm",
   "bin": "bin/ezoe",
@@ -10,6 +10,10 @@
   "keywords": [
     "ezoe"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "http://github.com/meso/ezoe.git"
+  },
   "author": "Toshihiro Shimizu",
   "license": "MIT",
   "dependencies": {
