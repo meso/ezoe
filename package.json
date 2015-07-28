@@ -1,6 +1,6 @@
 {
   "name": "ezoe",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "The ezoe command written in Node.js",
   "main": "lib/askfm",
   "bin": "bin/ezoe",
