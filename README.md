@@ -15,7 +15,7 @@ $ ezoe
 $ ezoe これは質問ですか？
 ```
 
-### Optsion
+### Option
 
 You can specify the Ask.fm user's account.
 
@@ -34,7 +34,7 @@ $ npm install ezoe -g
 なんかエラーでたら Cookie 保存してるファイルを削除してみてください
 
 ```
-$ rm ~/.askfm-cokkies.json
+$ rm ~/.askfm-cookies.json
 ```
 
 ## License
